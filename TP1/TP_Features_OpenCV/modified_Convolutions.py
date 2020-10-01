@@ -46,9 +46,8 @@ plt.savefig("conv_filter2D_y_derivate.png", bbox_inches='tight')
 plt.close()
 
 img_diff = img3 - img2
-img_diff *= 255.0 / np.max(img_diff) 
 plt.figure(figsize=(8, 6))
-plt.imshow(img_diff, cmap='gray')
+plt.imshow(img_diff, cmap='gray', vmax=255, vmin=0)
 plt.title("Y derivate result difference between the direct and filter2D")
 plt.axis('off')
 plt.savefig("difference_y_derivate_direct-filter2D.png", bbox_inches='tight')
