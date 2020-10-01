@@ -18,13 +18,17 @@ for y in range(1,h):
   for x in range(1,w):
     val = img[y, x] - img[y-1, x] 
     img2[y,x] = min(max(val,0),255)
+
 t2 = cv2.getTickCount()
 time = (t2 - t1)/ cv2.getTickFrequency()
 print("Direct method:",time,"s")
 
-plt.subplot(311)
-plt.imshow(img2,cmap = 'gray')
-plt.title('Convolution - Direct method')
+plt.figure(figsize=(8, 6))
+plt.imshow(img2, cmap='gray')
+plt.title('Y derivate convolution - Direct method')
+plt.axis('off')
+plt.savefig("conv_direct_y_derivate.png", bbox_inches='tight')
+plt.close()
 
 #Method filter2D
 t1 = cv2.getTickCount()
@@ -34,19 +38,21 @@ t2 = cv2.getTickCount()
 time = (t2 - t1)/ cv2.getTickFrequency()
 print("Method filter2D :",time,"s")
 
-plt.subplot(312)
-plt.imshow(img3,cmap = 'gray',vmin = 0.0,vmax = 255.0)
-plt.title('Convolution - filter2D')
-
-plt.subplot(313)
-plt.imshow(img3 - img2, cmap = 'gray',vmin = 0.0,vmax = 255.0)
-plt.title("Difference between the two methods")
-
-plt.tight_layout(pad=1.0)
-plt.savefig("q12.png")
-
+plt.figure(figsize=(8, 6))
+plt.imshow(img2, cmap='gray')
+plt.title('Y derivate convolution - filter 2D')
+plt.axis('off')
+plt.savefig("conv_filter2D_y_derivate.png", bbox_inches='tight')
 plt.close()
 
+img_diff = img3 - img2
+img_diff *= 255.0 / np.max(img_diff) 
+plt.figure(figsize=(8, 6))
+plt.imshow(img_diff, cmap='gray')
+plt.title("Y derivate result difference between the direct and filter2D")
+plt.axis('off')
+plt.savefig("difference_y_derivate_direct-filter2D.png", bbox_inches='tight')
+plt.close()
 
 center_y = h // 2
 center_x = x // 2
@@ -58,20 +64,18 @@ img4 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
 for i in range(-q//2, q//2 + 1, 1):
     for j in range(-q//2, q//2 + 1, 1):
         val = SI(img, center_y + i, center_x + j, p)
-        print(val)
-        img4[center_y + i, center_x + j] = val
+        img4[center_y + i, center_x + j] = min(max(val,0),255)
 
-img4 *= 255.0/img4.max()
+plt.figure(figsize=(8, 6))
+plt.imshow(img, cmap='gray')
+plt.title('Original Image')
+plt.axis('off')
+plt.savefig("original_image.png", bbox_inches='tight')
+plt.close()
 
-plt.subplot(211)
-plt.imshow(img, cmap='gray', vmin=0.0, vmax=255.0)
-plt.title("Original image")
-
-plt.subplot(212)
-plt.imshow(img4, cmap="gray", vmin=0.0, vmax=255.0)
-plt.title("SI function applied with p = 1 on the image center, a 50x50 square")
-
-plt.tight_layout(pad=1.0)
-plt.savefig("q13.png")
-
+plt.figure(figsize=(8, 6))
+plt.imshow(img4, cmap='gray')
+plt.title('SI Function with p=1 on a square of size 50 on the center')
+plt.axis('off')
+plt.savefig("SI_function.png", bbox_inches='tight')
 plt.close()
