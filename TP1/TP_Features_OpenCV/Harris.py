@@ -178,7 +178,7 @@ plt.title('H with threshold', fontsize=8)
 plt.subplot(144)
 plt.axis('off')
 plt.imshow(img_rgb)
-plt.title('Harris Points', fontsize=8)
+plt.title('Harris points', fontsize=8)
 
 plt.savefig("harris-mine.png", dpi=480, bbox_inches='tight', pad_inches=0)
 plt.close()
