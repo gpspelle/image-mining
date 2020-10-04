@@ -19,6 +19,7 @@ for y in range(1,h-1):
     val = 5*img[y, x] - img[y-1, x] - img[y, x-1] - img[y+1, x] - img[y, x+1] 
     direct_method[y,x] = min(max(val,0),255)
 
+
 t2 = cv2.getTickCount()
 #Find the time of execution in seconds
 time = (t2 - t1)/ cv2.getTickFrequency()
