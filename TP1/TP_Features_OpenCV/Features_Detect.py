@@ -62,6 +62,7 @@ img1 = cv2.drawKeypoints(gray1, pts1, None, flags=4)
 # 0: position only; 4: position + scale + direction
 img2 = cv2.drawKeypoints(gray2, pts2, None, flags=4)
 
+
 plt.subplot(121)
 plt.imshow(img1)
 plt.title('Image n°1')
