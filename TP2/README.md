@@ -51,7 +51,7 @@ phase or if it's stagnated.
 
 ### Loss interpretation
 
-[Configuration number 2 loss plot](figures/number_2_loss.png)
+![Configuration number 2 loss plot](figures/number_2_loss.png)
 
 
 As seen on the figure above, the loss on validation is starting to converge and even increase close to the value of 1.0. But, the training loss
@@ -60,8 +60,8 @@ your model, it's already overfitting to the training data.
 
 Something that's interesting and possible to see on figures below, is the effect of the dropout on the last connected layers.
 
-[Configuration number 3 loss without dropout](figures/number_3_loss_without_dropout.png)
-[Configuration number 3 loss with dropout](figures/number_3_loss_with_dropout.png)
+![Configuration number 3 loss without dropout](figures/number_3_loss_without_dropout.png)
+![Configuration number 3 loss with dropout](figures/number_3_loss_with_dropout.png)
 
 Note that the difference between the figures above also take in consideration an epoch number increase, with dropout, the problem
 is harder to learn, but more general. Since, a dropout of 0.65 is being used, 65% of the connected layers are erased during training.
